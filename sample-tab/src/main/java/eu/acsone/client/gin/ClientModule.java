@@ -18,6 +18,8 @@ package eu.acsone.client.gin;
 
 import eu.acsone.client.application.ApplicationModule;
 import eu.acsone.client.place.NameTokens;
+
+import com.gwtplatform.dispatch.client.gin.DispatchAsyncModule;
 import com.gwtplatform.mvp.client.annotations.DefaultPlace;
 import com.gwtplatform.mvp.client.annotations.ErrorPlace;
 import com.gwtplatform.mvp.client.annotations.UnauthorizedPlace;
@@ -33,6 +35,7 @@ public class ClientModule extends AbstractPresenterModule {
     @Override
     protected void configure() {
         install(new DefaultModule(DefaultPlaceManager.class));
+        install(new DispatchAsyncModule());
         install(new ApplicationModule());
 
         // DefaultPlaceManager Places

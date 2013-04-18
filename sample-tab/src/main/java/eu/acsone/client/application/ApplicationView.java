@@ -18,37 +18,36 @@ package eu.acsone.client.application;
 
 import javax.inject.Inject;
 
-import com.google.gwt.uibinder.client.UiBinder;
-import com.google.gwt.uibinder.client.UiField;
-import com.google.gwt.user.client.ui.SimplePanel;
+import com.google.gwt.user.client.ui.IsWidget;
 import com.google.gwt.user.client.ui.Widget;
 import com.gwtplatform.mvp.client.ViewImpl;
 
-public class ApplicationView extends ViewImpl implements ApplicationPresenter.MyView {
-    public interface Binder extends UiBinder<Widget, ApplicationView> {
-    }
+public class ApplicationView extends ViewImpl implements
+		ApplicationPresenter.MyView {
 
-    @UiField
-    SimplePanel main;
-    
-    private Widget widget;
+	private ViewPanels viewPanels;
 
-    @Inject
-    public ApplicationView(final Binder uiBinder) {
-        widget = uiBinder.createAndBindUi(this);
-    }
+	@Inject
+	public ApplicationView() {
+		viewPanels = new ViewPanels();
+	}
 
-    @Override
-    public void setInSlot(Object slot, Widget content) {
-        if (slot == ApplicationPresenter.TYPE_SetMainContent) {
-            main.setWidget(content);
-        } else {
-            super.setInSlot(slot, content);
-        }
-    }
+	@Override
+	public Widget asWidget() {
+		return viewPanels.getViewport();
+	}
 
-    @Override
-    public Widget asWidget() {
-        return widget;
-    }
+	@Override
+	public void setInSlot(Object slot, IsWidget content) {
+		if (slot == ApplicationPresenter.SLOT_content) {
+			if (content != null) {
+
+				viewPanels.getCenterPanel().clear();
+				viewPanels.getCenterPanel().add(content);
+				viewPanels.getCenterPanel().forceLayout();
+			}
+		} else {
+			super.setInSlot(slot, content);
+		}
+	}
 }
