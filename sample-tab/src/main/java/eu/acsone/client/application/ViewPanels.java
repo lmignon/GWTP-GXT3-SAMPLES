@@ -1,8 +1,10 @@
 package eu.acsone.client.application;
 
-import com.google.gwt.user.client.ui.*;
-import com.sencha.gxt.widget.core.client.*;
-import com.sencha.gxt.widget.core.client.container.*;
+import com.sencha.gxt.widget.core.client.ContentPanel;
+import com.sencha.gxt.widget.core.client.container.BorderLayoutContainer;
+import com.sencha.gxt.widget.core.client.container.MarginData;
+import com.sencha.gxt.widget.core.client.container.SimpleContainer;
+import com.sencha.gxt.widget.core.client.container.Viewport;
 
 public class ViewPanels {
 	private Viewport viewport = new Viewport();
