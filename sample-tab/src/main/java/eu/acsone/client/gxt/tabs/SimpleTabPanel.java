@@ -59,9 +59,11 @@ public class SimpleTabPanel extends com.sencha.gxt.widget.core.client.TabPanel
 	 */
 	public void setPanelContent(IsWidget panelContent) {
 		if (currentActiveTab != null) {
-			((SimpleTab) currentActiveTab.asWidget()).clear();
-			if (panelContent != null) {
-				((SimpleTab) currentActiveTab.asWidget()).add(panelContent);
+			SimpleTab sTab = (SimpleTab) currentActiveTab.asWidget();
+			IsWidget currentContent = sTab.getWidget();
+			if (panelContent != null && currentContent != panelContent) {
+				sTab.clear();
+				sTab.add(panelContent);
 			}
 		}
 	}
@@ -74,8 +76,6 @@ public class SimpleTabPanel extends com.sencha.gxt.widget.core.client.TabPanel
 	 * @return The new tab.
 	 */
 	protected SimpleTab createNewTab(TabData tabData) {
-		// TODO Try using assisted injection here (to inject UiBinder in
-		// SimpleTab)
 		return new SimpleTab(tabData, this);
 	}
 }
