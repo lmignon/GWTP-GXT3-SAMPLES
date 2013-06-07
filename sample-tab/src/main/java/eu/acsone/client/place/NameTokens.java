@@ -18,8 +18,18 @@ package eu.acsone.client.place;
 
 public class NameTokens {
     public static final String home = "home";
+    public static final String nested1 = "nested1";
+	public static final String nested2 = "nested2";
 
     public static String getHome() {
         return home;
     }
+
+	public static String getNested1() {
+		return nested1;
+	}
+
+	public static String getNested2() {
+		return nested2;
+	}
 }

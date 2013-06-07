@@ -1,30 +1,25 @@
 package eu.acsone.client.application.home;
 
-import eu.acsone.client.application.ApplicationPresenter;
-import eu.acsone.client.gxt.tabs.GXTTabContainerPresenter;
-import eu.acsone.client.place.NameTokens;
-
 import com.google.gwt.event.shared.GwtEvent.Type;
 import com.google.inject.Inject;
 import com.google.web.bindery.event.shared.EventBus;
 import com.gwtplatform.mvp.client.ChangeTabHandler;
-import com.gwtplatform.mvp.client.Presenter;
 import com.gwtplatform.mvp.client.RequestTabsHandler;
-import com.gwtplatform.mvp.client.TabContainerPresenter;
 import com.gwtplatform.mvp.client.TabView;
-import com.gwtplatform.mvp.client.View;
 import com.gwtplatform.mvp.client.annotations.ChangeTab;
 import com.gwtplatform.mvp.client.annotations.ContentSlot;
-import com.gwtplatform.mvp.client.annotations.NameToken;
 import com.gwtplatform.mvp.client.annotations.ProxyStandard;
 import com.gwtplatform.mvp.client.annotations.RequestTabs;
 import com.gwtplatform.mvp.client.proxy.Proxy;
-import com.gwtplatform.mvp.client.proxy.ProxyPlace;
 import com.gwtplatform.mvp.client.proxy.RevealContentEvent;
 import com.gwtplatform.mvp.client.proxy.RevealContentHandler;
 
+import eu.acsone.client.application.ApplicationPresenter;
+import eu.acsone.client.gxt.tabs.GXTTabContainerPresenter;
+import eu.acsone.client.gxt.tabs.GXTTabPanel;
+
 public class HomePagePresenter extends GXTTabContainerPresenter<HomePagePresenter.MyView, HomePagePresenter.MyProxy> {
-    public interface MyView extends TabView {
+    public interface MyView extends TabView, GXTTabPanel {
     }
 
     @ProxyStandard

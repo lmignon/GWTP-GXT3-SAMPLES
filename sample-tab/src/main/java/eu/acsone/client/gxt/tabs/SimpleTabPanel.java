@@ -35,13 +35,7 @@ public class SimpleTabPanel extends com.sencha.gxt.widget.core.client.TabPanel
 
 	@Override
 	public void setActiveTab(Tab tab) {
-		if (currentActiveTab != null) {
-			currentActiveTab.deactivate();
-		}
-		if (tab != null) {
-			tab.activate();
-		}
-		currentActiveTab = tab;
+		tab.activate();
 	}
 
 	@Override
@@ -58,6 +52,8 @@ public class SimpleTabPanel extends com.sencha.gxt.widget.core.client.TabPanel
 	 *            to clear the panel.
 	 */
 	public void setPanelContent(IsWidget panelContent) {
+		// GXTTabContainerPresenter call the setActiveTab before the setPanelContent
+		// Therefore we can use the currentActiveTab as content
 		if (currentActiveTab != null) {
 			SimpleTab sTab = (SimpleTab) currentActiveTab.asWidget();
 			IsWidget currentContent = sTab.getWidget();
@@ -77,5 +73,9 @@ public class SimpleTabPanel extends com.sencha.gxt.widget.core.client.TabPanel
 	 */
 	protected SimpleTab createNewTab(TabData tabData) {
 		return new SimpleTab(tabData, this);
+	}
+
+	public void setNextActiveTab(Tab tab) {
+		currentActiveTab = tab;
 	}
 }

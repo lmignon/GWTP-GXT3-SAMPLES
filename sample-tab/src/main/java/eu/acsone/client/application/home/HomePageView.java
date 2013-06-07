@@ -56,5 +56,11 @@ public class HomePageView extends ViewImpl implements HomePagePresenter.MyView {
 		} else {
 			super.setInSlot(slot, content);
 		}
+	}
+
+	@Override
+	public void setNextActiveTab(Tab tab) {
+		folder.setNextActiveTab(tab);
+		
 	}	
 }

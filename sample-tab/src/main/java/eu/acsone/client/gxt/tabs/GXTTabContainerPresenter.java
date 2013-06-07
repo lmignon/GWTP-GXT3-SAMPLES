@@ -22,7 +22,7 @@ import com.gwtplatform.mvp.client.proxy.TabContentProxy;
  * @param <V>
  * @param <Proxy_>
  */
-public abstract class GXTTabContainerPresenter<V extends View & TabPanel, Proxy_ extends Proxy<?>> extends TabContainerPresenter<V, Proxy_> {
+public abstract class GXTTabContainerPresenter<V extends View & TabPanel & GXTTabPanel, Proxy_ extends Proxy<?>> extends TabContainerPresenter<V, Proxy_> {
 	
 	private final Object tabContentSlot;
 	
@@ -81,21 +81,16 @@ public abstract class GXTTabContainerPresenter<V extends View & TabPanel, Proxy_
 	
 	@Override
 	public void setInSlot(Object slot, PresenterWidget<?> content) {
-
-        // TODO: Consider switching this to an event bus based mechanism where the
-        // child presenter fires an event when it is revealed and the parent highlights the tab.
-
-        // If we're setting a presenter attached to an actual slot, then highlight the tab
-        if (slot == tabContentSlot) {
+		if (slot == tabContentSlot) {
             try {
                 Presenter<?, ?> presenter = (Presenter<?, ?>) content;
                 TabContentProxy<?> proxy = (TabContentProxy<?>) presenter.getProxy();
-                getView().setActiveTab(proxy.getTab());
+                getView().setNextActiveTab(proxy.getTab());
             } catch (Exception e) {
                 // We can't cast, no worry, we just won't highlight a tab
             }
         }
-        super.setInSlot(slot, content, true);
+        super.setInSlot(slot, content);
 	}
 
 }

@@ -10,27 +10,26 @@ import com.gwtplatform.mvp.client.annotations.ProxyStandard;
 import com.gwtplatform.mvp.client.annotations.TabInfo;
 import com.gwtplatform.mvp.client.proxy.TabContentProxyPlace;
 
-import eu.acsone.client.application.home.HomePagePresenter;
 import eu.acsone.client.place.NameTokens;
 
-public class HomeTab1Presenter extends
-		Presenter<HomeTab1Presenter.MyView, HomeTab1Presenter.MyProxy> {
+public class SubTab2Presenter extends
+		Presenter<SubTab2Presenter.MyView, SubTab2Presenter.MyProxy> {
 
 	private final DispatchAsync dispatchAsync;
 
-	@NameToken(NameTokens.home)
+	@NameToken(NameTokens.nested2)
 	@ProxyStandard
-	@TabInfo(container = HomePagePresenter.class, priority = 0, label = "tab1")
-	public interface MyProxy extends TabContentProxyPlace<HomeTab1Presenter> {
+	@TabInfo(container = HomeTab2Presenter.class, priority = 1, label = "sub tab2")
+	public interface MyProxy extends TabContentProxyPlace<SubTab2Presenter> {
 	}
 
 	public interface MyView extends View {
 	}
 
 	@Inject
-	public HomeTab1Presenter(final EventBus eventBus, final MyView view,
+	public SubTab2Presenter(final EventBus eventBus, final MyView view,
 			final MyProxy proxy, final DispatchAsync dispatchAsync) {
-		super(eventBus, view, proxy, HomePagePresenter.TYPE_SetTabContent);
+		super(eventBus, view, proxy, HomeTab2Presenter.TYPE_SetTabContent);
 		this.dispatchAsync = dispatchAsync;
 	}
 }
