@@ -60,6 +60,7 @@ public class SimpleTabPanel extends com.sencha.gxt.widget.core.client.TabPanel
 			if (panelContent != null && currentContent != panelContent) {
 				sTab.clear();
 				sTab.add(panelContent);
+				sTab.forceLayout();
 			}
 		}
 	}
