@@ -12,4 +12,12 @@ public interface GXTTabPanel {
      * @param tab The tab to activate.
      */
     void setNextActiveTab(Tab tab);
+    
+    
+    /**
+     * Renders all the tabs in the view
+     * The method is called after all tabs have been added to be sure
+     * that tabs are rendered in the expected priority
+     */
+    void renderTabs();
 }

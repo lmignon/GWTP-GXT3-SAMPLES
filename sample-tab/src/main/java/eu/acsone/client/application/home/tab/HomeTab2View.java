@@ -63,4 +63,9 @@ public class HomeTab2View extends ViewImpl implements HomeTab2Presenter.MyView {
 		folder.setNextActiveTab(tab);
 		
 	}	
+	
+	@Override
+	public void renderTabs() {
+		folder.renderTabs();
+	}	
 }

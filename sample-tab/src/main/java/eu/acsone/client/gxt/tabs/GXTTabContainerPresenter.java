@@ -5,6 +5,7 @@ import com.google.web.bindery.event.shared.EventBus;
 import com.gwtplatform.mvp.client.ChangeTabHandler;
 import com.gwtplatform.mvp.client.Presenter;
 import com.gwtplatform.mvp.client.PresenterWidget;
+import com.gwtplatform.mvp.client.RequestTabsEvent;
 import com.gwtplatform.mvp.client.RequestTabsHandler;
 import com.gwtplatform.mvp.client.TabContainerPresenter;
 import com.gwtplatform.mvp.client.TabPanel;
@@ -92,5 +93,15 @@ public abstract class GXTTabContainerPresenter<V extends View & TabPanel & GXTTa
         }
         super.setInSlot(slot, content);
 	}
+	
+	 @Override
+	    protected void onBind() {
+		 	// The following call will trigger a series of call to addTab, so
+	        super.onBind();
+	        // the addTab, only adds tabs to the SimpleTabPanel. To be sure that all tabs
+	        // will be rendered in the expected priority, we must call the renderTabs method on
+	        // the view
+	        getView().renderTabs();	
+	    }
 
 }

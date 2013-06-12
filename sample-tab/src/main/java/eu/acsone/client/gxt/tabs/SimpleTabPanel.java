@@ -1,5 +1,15 @@
 package eu.acsone.client.gxt.tabs;
 
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.SortedMap;
+import java.util.TreeMap;
+
+import com.google.gwt.dev.util.collect.HashMap;
+import com.google.gwt.thirdparty.guava.common.collect.SortedMaps;
 import com.google.gwt.user.client.ui.IsWidget;
 import com.gwtplatform.mvp.client.Tab;
 import com.gwtplatform.mvp.client.TabData;
@@ -14,11 +24,19 @@ public class SimpleTabPanel extends com.sencha.gxt.widget.core.client.TabPanel
 		implements TabPanel {
 	Tab currentActiveTab;
 
+	// a map sorted by priority used to keep the expected tab order
+	SortedMap<TabData, SimpleTab> tabsConfig = new TreeMap<TabData, SimpleTab>(
+			new Comparator<TabData>() {
+				@Override
+				public int compare(TabData o1, TabData o2) {
+					return Float.compare(o1.getPriority(), o2.getPriority());
+				}
+			});
+
 	@Override
 	public Tab addTab(TabData tabData, String historyToken) {
 		SimpleTab newTab = createNewTab(tabData);
-		insert(newTab, (int) tabData.getPriority(),
-				new TabItemConfig(tabData.getLabel()));
+		tabsConfig.put(tabData, newTab);
 		newTab.setTargetHistoryToken(historyToken);
 		return newTab;
 	}
@@ -52,7 +70,8 @@ public class SimpleTabPanel extends com.sencha.gxt.widget.core.client.TabPanel
 	 *            to clear the panel.
 	 */
 	public void setPanelContent(IsWidget panelContent) {
-		// GXTTabContainerPresenter call the setActiveTab before the setPanelContent
+		// GXTTabContainerPresenter call the setActiveTab before the
+		// setPanelContent
 		// Therefore we can use the currentActiveTab as content
 		if (currentActiveTab != null) {
 			SimpleTab sTab = (SimpleTab) currentActiveTab.asWidget();
@@ -78,5 +97,20 @@ public class SimpleTabPanel extends com.sencha.gxt.widget.core.client.TabPanel
 
 	public void setNextActiveTab(Tab tab) {
 		currentActiveTab = tab;
+	}
+
+	/**
+	 * insert tabs in the priority defined order
+	 */
+	public void renderTabs() {
+		int index = 0;
+		for (Entry<TabData, SimpleTab> entry : tabsConfig.entrySet()) {
+			SimpleTab simpleTab = entry.getValue();
+			insert(simpleTab, index, new TabItemConfig(entry.getKey()
+					.getLabel()));
+			simpleTab.activateHistoryToken();
+			index += 1;
+
+		}
 	}
 }

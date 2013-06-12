@@ -26,7 +26,7 @@ public class HomeTab2Presenter
 	private final DispatchAsync dispatchAsync;
 
 	@ProxyCodeSplit
-	@TabInfo(container = HomePagePresenter.class, label = "Nested", priority = 1, nameToken = NameTokens.nested1)
+	@TabInfo(container = HomePagePresenter.class, label = "Nested", priority = 0, nameToken = NameTokens.nested1)
 	public interface MyProxy extends NonLeafTabContentProxy<HomeTab2Presenter> {
 	}
 

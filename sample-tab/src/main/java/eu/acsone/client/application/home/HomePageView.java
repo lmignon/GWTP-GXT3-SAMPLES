@@ -46,7 +46,6 @@ public class HomePageView extends ViewImpl implements HomePagePresenter.MyView {
 	@Override
 	public void changeTab(Tab tab, TabData tabData, String historyToken) {
 		folder.changeTab(tab, tabData, historyToken);
-
 	}
 
 	@Override
@@ -61,6 +60,12 @@ public class HomePageView extends ViewImpl implements HomePagePresenter.MyView {
 	@Override
 	public void setNextActiveTab(Tab tab) {
 		folder.setNextActiveTab(tab);
+		
+	}
+
+	@Override
+	public void renderTabs() {
+		folder.renderTabs();
 		
 	}	
 }

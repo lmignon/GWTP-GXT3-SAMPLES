@@ -16,12 +16,19 @@ public class SimpleTab extends ContentPanel implements Tab {
     
     private final float priority;
     private final TabPanel parent;
+    private String historyToken;
 
     public SimpleTab(TabData tabData, TabPanel parent) {
         super();
         this.parent = parent;
         this.setHeaderVisible(false);
         priority = tabData.getPriority();
+    }
+    
+    public void activateHistoryToken(){
+    	Hyperlink hl = new Hyperlink(getText(), historyToken);
+    	hl.toString();
+    	setText(hl.toString());
     }
 
     @Override
@@ -50,9 +57,7 @@ public class SimpleTab extends ContentPanel implements Tab {
 
     @Override
     public void setTargetHistoryToken(String historyToken) {
-    	Hyperlink hl = new Hyperlink(getText(), historyToken);
-    	hl.toString();
-    	setText(hl.toString());
+    	this.historyToken = historyToken;
     }
 
     @Override

@@ -20,7 +20,7 @@ public class HomeTab1Presenter extends
 
 	@NameToken(NameTokens.home)
 	@ProxyStandard
-	@TabInfo(container = HomePagePresenter.class, priority = 0, label = "tab1")
+	@TabInfo(container = HomePagePresenter.class, priority = 1, label = "tab1")
 	public interface MyProxy extends TabContentProxyPlace<HomeTab1Presenter> {
 	}
 
