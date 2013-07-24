@@ -1,15 +1,10 @@
 package eu.acsone.client.gxt.tabs;
 
-import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
 import java.util.Map.Entry;
 import java.util.SortedMap;
 import java.util.TreeMap;
 
-import com.google.gwt.dev.util.collect.HashMap;
-import com.google.gwt.thirdparty.guava.common.collect.SortedMaps;
 import com.google.gwt.user.client.ui.IsWidget;
 import com.gwtplatform.mvp.client.Tab;
 import com.gwtplatform.mvp.client.TabData;
@@ -60,6 +55,7 @@ public class SimpleTabPanel extends com.sencha.gxt.widget.core.client.TabPanel
 	public void changeTab(Tab tab, TabData tabData, String historyToken) {
 		tab.setTargetHistoryToken(historyToken);
 		tab.setText(tabData.getLabel());
+		((SimpleTab)tab).activateHistoryToken();
 	}
 
 	/**
